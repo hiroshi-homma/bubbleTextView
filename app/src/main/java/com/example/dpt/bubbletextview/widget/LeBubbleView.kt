@@ -13,37 +13,6 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import com.example.dpt.bubbletextview.R
 
-
-/**
- * Created by dupengtao on 15/7/25.
- *
- *
- * <declare-styleable name="LeBubbleTextView">
- *
- * <attr name="bubbleCornerRadius" format="dimension"></attr>
- *
- * <attr name="bubbleBackgroundColor" format="color"></attr>
- *
- * <attr name="bubbleTextSize" format="dimension"></attr>
- *
- * <attr name="bubbleTextColor" format="color"></attr>
- *
- * <attr name="bubbleText" format="string"></attr>
- *
- *
- *
- * <attr name="bubbleArrowDirection">
- * <enum name="left" value="1"></enum>
- * <enum name="top" value="2"></enum>
- * <enum name="right" value="3"></enum>
- * <enum name="bottom" value="4"></enum>
-</attr> *
- *
- * <attr name = "relativePosition" format = "fraction"></attr>
- *
- * <attr name="bubbleBackgroundPressColor" format="color"></attr>
-</declare-styleable> *
- */
 open class LeBubbleView : RelativeLayout, Runnable {
 
     protected lateinit var mContext: Context
@@ -54,7 +23,7 @@ open class LeBubbleView : RelativeLayout, Runnable {
     protected lateinit var conRl: RelativeLayout
     protected lateinit var arrowImage: ImageView
     protected var pressBackgroundColor: Int = 0
-    protected var backGroundColor: Int = 0
+    private var backGroundColor: Int = 0
     protected lateinit var norDrawable: TintedBitmapDrawable
     protected lateinit var pressDrawable: TintedBitmapDrawable
     var arrowOffset: Int = 0
@@ -201,7 +170,6 @@ open class LeBubbleView : RelativeLayout, Runnable {
             }
         }
 
-        //int arrowRes = backgroundColor == Color.parseColor("#B3000000")?R.drawable.le_bubble_arrow_light:R.drawable.le_bubble_arrow_light;
         val arrowRes = R.drawable.le_bubble_arrow_light
         val source = BitmapFactory.decodeResource(this.resources, arrowRes)
 
@@ -221,11 +189,11 @@ open class LeBubbleView : RelativeLayout, Runnable {
                 val conRlBackground = conRl.background as LeRoundRectDrawable2
                 if (isPressed) {
                     conRlBackground.paint.color = pressBackgroundColor
-                    //arrowImage.setImageTintList(ColorStateList.valueOf(pressBackgroundColor));
+
                     arrowImage.setImageDrawable(pressDrawable)
                 } else {
                     conRlBackground.paint.color = backgroundColor
-                    //arrowImage.setImageTintList(ColorStateList.valueOf(backgroundColor));
+
                     arrowImage.setImageDrawable(norDrawable)
                 }
                 conRl.invalidate()
@@ -249,7 +217,7 @@ open class LeBubbleView : RelativeLayout, Runnable {
 
     }
 
-    fun rotateBitmap(source: Bitmap, angle: Float): Bitmap {
+    private fun rotateBitmap(source: Bitmap, angle: Float): Bitmap {
         val matrix = Matrix()
         matrix.postRotate(angle)
         return Bitmap.createBitmap(source, 0, 0, source.width, source.height, matrix, true)
@@ -264,13 +232,13 @@ open class LeBubbleView : RelativeLayout, Runnable {
     override fun run() {
         val conRlw = conRl.width
         val conRlh = conRl.height
-        val params = arrowImage.layoutParams as RelativeLayout.LayoutParams
+        val params = arrowImage.layoutParams as LayoutParams
         when (arrowDirection) {
-            LeBubbleView.ArrowDirection.TOP, LeBubbleView.ArrowDirection.BOTTOM -> {
+            ArrowDirection.TOP, ArrowDirection.BOTTOM -> {
                 arrowOffset = (conRlw * relative - arrowImage.width / 2).toInt()
                 params.setMargins(arrowOffset, 0, 0, 0)
             }
-            LeBubbleView.ArrowDirection.LEFT -> {
+            ArrowDirection.LEFT -> {
                 arrowOffset = (conRlh * relative - arrowImage.height / 2).toInt()
                 params.setMargins(0, arrowOffset, 0, 0)
             }
@@ -293,8 +261,8 @@ open class LeBubbleView : RelativeLayout, Runnable {
 
     companion object {
 
-        val STYLE_DARK = 1
-        val STYLE_LIGHT = 2
-        val STYLE_OTHER = 3
+        const val STYLE_DARK = 1
+        const val STYLE_LIGHT = 2
+        const val STYLE_OTHER = 3
     }
 }

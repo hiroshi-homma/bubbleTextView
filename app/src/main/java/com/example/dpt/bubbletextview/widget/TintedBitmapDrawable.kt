@@ -7,20 +7,11 @@ import android.graphics.drawable.BitmapDrawable
 /**
  * Created by dupengtao on 15/8/24.
  */
-class TintedBitmapDrawable : BitmapDrawable {
-    private var tint: Int = 0
+class TintedBitmapDrawable(res: Resources, bitmap: Bitmap, private var tint: Int) :
+    BitmapDrawable(res, bitmap) {
     private var alpha1: Int = 0
 
-    constructor(res: Resources, bitmap: Bitmap, tint: Int) : super(res, bitmap) {
-        this.tint = tint
-        this.alpha1 = Color.alpha(tint)
-    }
-
-    constructor(res: Resources, resId: Int, tint: Int) : super(
-        res,
-        BitmapFactory.decodeResource(res, resId)
-    ) {
-        this.tint = tint
+    init {
         this.alpha1 = Color.alpha(tint)
     }
 

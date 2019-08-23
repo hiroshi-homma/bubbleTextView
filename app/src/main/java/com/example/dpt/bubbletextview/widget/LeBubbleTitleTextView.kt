@@ -2,7 +2,6 @@ package com.example.dpt.bubbletextview.widget
 
 import android.content.Context
 import android.content.res.TypedArray
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.Rect
@@ -53,16 +52,15 @@ class LeBubbleTitleTextView : LeBubbleView, Runnable {
     private var titleText: String? = null
 
 
-    constructor(context: Context) : super(context) {}
+    constructor(context: Context) : super(context)
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {}
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
         context,
         attrs,
         defStyleAttr
-    ) {
-    }
+    )
 
     override fun onInitialize(attrs: AttributeSet?, defStyleAttr: Int, a: TypedArray) {
         titleText = a.getString(R.styleable.LeBubbleTextView_bubbleTitleText)
@@ -75,15 +73,18 @@ class LeBubbleTitleTextView : LeBubbleView, Runnable {
     private fun initContentTextView(textColor: Int, content: String?) {
         contentTextView = TextView(mContext)
         contentTextView!!.id = View.generateViewId()
-        val contentTvParams = RelativeLayout.LayoutParams(
-            RelativeLayout.LayoutParams.WRAP_CONTENT,
-            RelativeLayout.LayoutParams.WRAP_CONTENT
+        val contentTvParams = LayoutParams(
+            LayoutParams.WRAP_CONTENT,
+            LayoutParams.WRAP_CONTENT
         )
-        contentTvParams.setMargins(dip2px(22f), dip2px(1f), dip2px(22f), dip2px(15f))
-        //contentTvParams.addRule(RelativeLayout.ALIGN_TOP,titleTextView.getId());
-        contentTvParams.addRule(RelativeLayout.BELOW, titleTextView!!.id)
+        contentTvParams.setMargins(
+            dip2px(22f),
+            dip2px(1f),
+            dip2px(22f),
+            dip2px(15f)
+        )
+        contentTvParams.addRule(BELOW, titleTextView!!.id)
         contentTextView!!.layoutParams = contentTvParams
-        //dark
         contentTextView!!.setTextColor(textColor)
         contentTextView!!.textSize = 14f
 
@@ -93,9 +94,8 @@ class LeBubbleTitleTextView : LeBubbleView, Runnable {
     private fun initTitleTextView(textColor: Int) {
         titleTextView = TextView(mContext)
         titleTextView!!.id = View.generateViewId()
-        val titleTvParams = RelativeLayout.LayoutParams(
-            RelativeLayout.LayoutParams.WRAP_CONTENT,
-            RelativeLayout.LayoutParams.WRAP_CONTENT
+        val titleTvParams = LayoutParams(
+            LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT
         )
         titleTvParams.setMargins(dip2px(22f), dip2px(15f), dip2px(22f), 0)
         titleTextView!!.layoutParams = titleTvParams
@@ -113,16 +113,16 @@ class LeBubbleTitleTextView : LeBubbleView, Runnable {
 
     private fun initCancelView(conRlw: Int) {
         cancelImage!!.id = View.generateViewId()
-        val cancelParams = RelativeLayout.LayoutParams(dip2px(13f), dip2px(13f))
-        //cancelParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-        cancelParams.addRule(RelativeLayout.ALIGN_PARENT_TOP)
+        val cancelParams = LayoutParams(dip2px(13f), dip2px(13f))
+
+        cancelParams.addRule(ALIGN_PARENT_TOP)
         cancelParams.setMargins(conRlw - dip2px(22f), dip2px(8f), dip2px(8f), 0)
         cancelImage!!.layoutParams = cancelParams
-        //cancelImage.setImageResource(R.drawable.le_bubble_cancel);
+
         val cancel = R.drawable.le_bubble_cancel
         val source = BitmapFactory.decodeResource(this.resources, cancel)
         val color: Int
-        if (curStyle == LeBubbleView.STYLE_DARK) {
+        if (curStyle == STYLE_DARK) {
             color = Color.parseColor("#99FFFFFF")
         } else {
             color = Color.parseColor("#99000000")

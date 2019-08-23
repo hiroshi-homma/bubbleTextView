@@ -21,10 +21,6 @@ abstract class LeStateColorDrawable(color: Int) : ColorDrawable(color) {
 
     protected abstract fun onIsPressed(isPressed: Boolean)
 
-    override fun setState(stateSet: IntArray): Boolean {
-        return super.setState(stateSet)
-    }
-
     override fun isStateful(): Boolean {
         return true
     }

@@ -7,45 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupWindow
-import com.example.dpt.bubbletextview.widget.LeBubbleTextView
 import com.example.dpt.bubbletextview.widget.LeBubbleView
 
-/**
- * Created by dupengtao on 15/10/9.
- */
 class LeBubbleTextViewHelper {
 
     var bubbleView: LeBubbleView? = null
-        private set
+
     var bubblePopupWindow: PopupWindow? = null
-        private set
+
     private var mAnchor: View? = null
     private var mBubbleViewWidth: Int = 0
     private var mBubbleViewHeight: Int = 0
 
-    /**
-     * @see LeBubbleTextViewHelper.getBubbleView
-     * @return
-     */
-    val bubbleTextView: LeBubbleTextView?
-        @Deprecated("")
-        get() = if (bubbleView is LeBubbleTextView) {
-            bubbleView as LeBubbleTextView?
-        } else {
-            null
-        }
-
-    constructor() {}
-
-    constructor(bubbleView: LeBubbleView) {
-        this.bubbleView = bubbleView
-    }
-
-    /**
-     * 初始化
-     * @param anchor 目标的view
-     * @param bubbleViewLayoutRes bubbleTextView资源文件
-     */
     fun init(anchor: View, bubbleViewLayoutRes: Int) {
 
         bubbleView = LayoutInflater.from(anchor.context).inflate(
@@ -65,11 +38,6 @@ class LeBubbleTextViewHelper {
         mBubbleViewHeight = bubbleView!!.measuredHeight
     }
 
-    /**
-     * 显示
-     * @param xCustomOffset x轴偏移量
-     * @param yCustomOffset y轴偏移量
-     */
     fun show(xCustomOffset: Int = 0, yCustomOffset: Int = 0) {
 
         val location = IntArray(2)
@@ -113,13 +81,7 @@ class LeBubbleTextViewHelper {
         )
     }
 
-    /**
-     * 消失
-     */
     fun dismissBubblePopupWindow() {
         bubblePopupWindow!!.dismiss()
     }
 }
-/**
- * 显示
- */

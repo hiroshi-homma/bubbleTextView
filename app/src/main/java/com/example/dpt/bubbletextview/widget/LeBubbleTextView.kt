@@ -6,52 +6,17 @@ import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
 
-
-/**
- * Created by dupengtao on 15/7/25.
- *
- *
- * <declare-styleable name="LeBubbleTextView">
- *
- * <attr name="bubbleCornerRadius" format="dimension"></attr>
- *
- * <attr name="bubbleBackgroundColor" format="color"></attr>
- *
- * <attr name="bubbleTextSize" format="dimension"></attr>
- *
- * <attr name="bubbleTextColor" format="color"></attr>
- *
- * <attr name="bubbleText" format="string"></attr>
- *
- *
- *
- * <attr name="bubbleArrowDirection">
- * <enum name="left" value="1"></enum>
- * <enum name="top" value="2"></enum>
- * <enum name="right" value="3"></enum>
- * <enum name="bottom" value="4"></enum>
-</attr> *
- *
- * <attr name = "relativePosition" format = "fraction"></attr>
- *
- * <attr name="bubbleBackgroundPressColor" format="color"></attr>
-</declare-styleable> *
- */
 class LeBubbleTextView : LeBubbleView, Runnable {
 
     var contentTextView: TextView? = null
-        private set
 
-    constructor(context: Context) : super(context) {}
+    constructor(context: Context) : super(context)
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {}
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    ) {
-    }
+        context, attrs, defStyleAttr
+    )
 
     override fun initChildView(
         radius: Float,

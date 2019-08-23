@@ -27,43 +27,14 @@ import android.graphics.drawable.Drawable
  * Simpler and uses less resources compared to GradientDrawable or ShapeDrawable.
  */
 class LeRoundRectDrawable2(backgroundColor: Int, private var mRadius: Float) : Drawable() {
-    val paint: Paint
+    val paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.DITHER_FLAG)
     private val mBoundsF: RectF
     private val mBoundsI: Rect
-    internal var padding: Float = 0.toFloat()
-        private set
-    private var mInsetForPadding = false
-    private var mInsetForRadius = true
-
-    var radius: Float
-        get() = mRadius
-        internal set(radius) {
-            if (radius == mRadius) {
-                return
-            }
-            mRadius = radius
-            updateBounds(null)
-            invalidateSelf()
-        }
 
     init {
-        paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.DITHER_FLAG)
         paint.color = backgroundColor
         mBoundsF = RectF()
         mBoundsI = Rect()
-    }
-
-    internal fun setPadding(padding: Float, insetForPadding: Boolean, insetForRadius: Boolean) {
-        if (padding == this.padding && mInsetForPadding == insetForPadding &&
-            mInsetForRadius == insetForRadius
-        ) {
-            return
-        }
-        this.padding = padding
-        mInsetForPadding = insetForPadding
-        mInsetForRadius = insetForRadius
-        updateBounds(null)
-        invalidateSelf()
     }
 
     override fun draw(canvas: Canvas) {
@@ -82,13 +53,6 @@ class LeRoundRectDrawable2(backgroundColor: Int, private var mRadius: Float) : D
             bounds.bottom.toFloat()
         )
         mBoundsI.set(bounds)
-        //if (mInsetForPadding) {
-        //float vInset = LeRoundRectDrawable2WithShadow.calculateVerticalPadding(mPadding, mRadius, mInsetForRadius);
-        //float hInset = LeRoundRectDrawable2WithShadow.calculateHorizontalPadding(mPadding, mRadius, mInsetForRadius);
-        //mBoundsI.inset((int) Math.ceil(hInset), (int) Math.ceil(vInset));
-        // to make sure they have same bounds.
-        //mBoundsF.set(mBoundsI);
-        //}
     }
 
     override fun onBoundsChange(bounds: Rect) {
@@ -112,8 +76,4 @@ class LeRoundRectDrawable2(backgroundColor: Int, private var mRadius: Float) : D
         return PixelFormat.TRANSLUCENT
     }
 
-    fun setColor(color: Int) {
-        paint.color = color
-        invalidateSelf()
-    }
 }
