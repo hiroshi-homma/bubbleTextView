@@ -1,5 +1,6 @@
 package com.example.dpt.bubbletextview.widget
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.TypedArray
@@ -47,6 +48,7 @@ open class LeBubbleView : RelativeLayout, Runnable {
         initialize(context, attrs, defStyleAttr)
     }
 
+    @SuppressLint("CustomViewStyleable")
     private fun initialize(context: Context, attrs: AttributeSet?, defStyleAttr: Int) {
         mContext = context
         //TODO custom attribute
@@ -63,7 +65,7 @@ open class LeBubbleView : RelativeLayout, Runnable {
             a.getColor(R.styleable.LeBubbleTextView_bubbleBackgroundPressColor, 0)
         val textColor = a.getColor(R.styleable.LeBubbleTextView_bubbleTextColor, 0)
         val textSize = a.getDimension(R.styleable.LeBubbleTextView_bubbleTextSize, 0f)
-        val contentText = a.getString(R.styleable.LeBubbleTextView_bubbleText)
+        val contentText = "TestTestTest"
 
         val intDirection = a.getInt(R.styleable.LeBubbleTextView_bubbleArrowDirection, 3)
         setCurDirection(intDirection)
@@ -83,7 +85,7 @@ open class LeBubbleView : RelativeLayout, Runnable {
 
     }
 
-    fun setCurThemeStyle(textColor: Int) {
+    private fun setCurThemeStyle(textColor: Int) {
 
         val darkColor = mContext.resources.getColor(R.color.bubbleView_dark_text_color)
         val lightColor = mContext.resources.getColor(R.color.bubbleView_light_text_color)
@@ -134,20 +136,20 @@ open class LeBubbleView : RelativeLayout, Runnable {
 
         conRl = RelativeLayout(mContext)
         conRl.id = View.generateViewId()
-        val conRlParams = RelativeLayout.LayoutParams(
-            RelativeLayout.LayoutParams.WRAP_CONTENT,
-            RelativeLayout.LayoutParams.WRAP_CONTENT
+        val conRlParams = LayoutParams(
+            LayoutParams.WRAP_CONTENT,
+            LayoutParams.WRAP_CONTENT
         )
-        //conRl.setLayoutParams(conRlParams);
+
         val roundRectDrawable = LeRoundRectDrawable2(backgroundColor, radius)
         conRl.background = roundRectDrawable
 
         initChildView(radius, backgroundColor, textColor, textSize, content)
         arrowImage = ImageView(mContext)
         arrowImage.id = View.generateViewId()
-        val arrowParams = RelativeLayout.LayoutParams(
-            RelativeLayout.LayoutParams.WRAP_CONTENT,
-            RelativeLayout.LayoutParams.WRAP_CONTENT
+        val arrowParams = LayoutParams(
+            LayoutParams.WRAP_CONTENT,
+            LayoutParams.WRAP_CONTENT
         )
 
         val r: Int

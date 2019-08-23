@@ -97,7 +97,7 @@ class LeBubbleTitleTextView : LeBubbleView, Runnable {
         val titleTvParams = LayoutParams(
             LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT
         )
-        titleTvParams.setMargins(dip2px(22f), dip2px(15f), dip2px(22f), 0)
+        titleTvParams.setMargins(dip2px(15f), dip2px(10f), dip2px(15f), 0)
         titleTextView!!.layoutParams = titleTvParams
         titleTextView!!.isSingleLine = true
         //dark
@@ -106,17 +106,17 @@ class LeBubbleTitleTextView : LeBubbleView, Runnable {
         } else {
             titleTextView!!.setTextColor(Color.BLACK)
         }
-        titleTextView!!.textSize = 17f
+        titleTextView!!.textSize = 12f
 
         titleTextView!!.text = titleText
     }
 
     private fun initCancelView(conRlw: Int) {
         cancelImage!!.id = View.generateViewId()
-        val cancelParams = LayoutParams(dip2px(13f), dip2px(13f))
+        val cancelParams = LayoutParams(dip2px(10f), dip2px(10f))
 
         cancelParams.addRule(ALIGN_PARENT_TOP)
-        cancelParams.setMargins(conRlw - dip2px(22f), dip2px(8f), dip2px(8f), 0)
+        cancelParams.setMargins(conRlw - dip2px(15f), dip2px(8f), dip2px(8f), 0)
         cancelImage!!.layoutParams = cancelParams
 
         val cancel = R.drawable.le_bubble_cancel
@@ -136,11 +136,7 @@ class LeBubbleTitleTextView : LeBubbleView, Runnable {
         val conRlRect = Rect()
         conRl.getHitRect(conRlRect)
         val rect = Rect(conRlRect)
-        //cancelImage.getHitRect(rect);
-        //rect.top -= 300;    // increase top hit area
-        rect.left = rect.right / 2   // increase left hit area
-        //rect.bottom += 300; // increase bottom hit area
-        //rect.right += 300;  // increase right hit area
+        rect.left = rect.right / 2
         conRl.touchDelegate = TouchDelegate(rect, cancelImage)
     }
 
@@ -153,28 +149,20 @@ class LeBubbleTitleTextView : LeBubbleView, Runnable {
         content: String?
     ) {
         super.initChildView(radius, backgroundColor, textColor, textSize, content)
-        //cancel view
         initCancelImageView()
-        //title view
         initTitleTextView(textColor)
         conRl.addView(titleTextView)
-        //content view
         initContentTextView(textColor, content)
         conRl.addView(contentTextView)
     }
 
-    fun setCancelImageOnClickListener(l: View.OnClickListener) {
+    fun setCancelImageOnClickListener(l: OnClickListener) {
         cancelImage!!.setOnClickListener(l)
     }
 
     override fun onPostCallBack(conRlw: Int, conRlh: Int) {
         super.onPostCallBack(conRlw, conRlh)
-        //add cancel image view
         initCancelView(conRlw)
         conRl.addView(cancelImage)
-    }
-
-    fun getCancelImage(): View? {
-        return cancelImage
     }
 }

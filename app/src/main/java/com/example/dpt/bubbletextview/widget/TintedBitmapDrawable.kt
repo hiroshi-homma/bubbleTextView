@@ -4,9 +4,6 @@ import android.content.res.Resources
 import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 
-/**
- * Created by dupengtao on 15/8/24.
- */
 class TintedBitmapDrawable(res: Resources, bitmap: Bitmap, private var tint: Int) :
     BitmapDrawable(res, bitmap) {
     private var alpha1: Int = 0

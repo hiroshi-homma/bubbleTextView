@@ -2,15 +2,11 @@ package com.example.dpt.bubbletextview.widget
 
 import android.graphics.drawable.ColorDrawable
 
-/**
- * Created by dupengtao on 15/8/12.
- */
 abstract class LeStateColorDrawable(color: Int) : ColorDrawable(color) {
 
     private var mPressed = false
 
     override fun onStateChange(state: IntArray): Boolean {
-
         val pressed = isPressed(state)
         if (mPressed != pressed) {
             mPressed = pressed
@@ -18,6 +14,7 @@ abstract class LeStateColorDrawable(color: Int) : ColorDrawable(color) {
         }
         return true
     }
+
 
     protected abstract fun onIsPressed(isPressed: Boolean)
 

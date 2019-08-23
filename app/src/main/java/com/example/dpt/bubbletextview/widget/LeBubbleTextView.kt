@@ -11,9 +11,7 @@ class LeBubbleTextView : LeBubbleView, Runnable {
     var contentTextView: TextView? = null
 
     constructor(context: Context) : super(context)
-
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
-
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
         context, attrs, defStyleAttr
     )
@@ -31,9 +29,9 @@ class LeBubbleTextView : LeBubbleView, Runnable {
         contentTextView!!.setTextColor(textColor)
         contentTextView!!.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
         contentTextView!!.text = content
-        val px22 = dip2px(21f)
-        val px16 = dip2px(15f)
-        contentTextView!!.setPaddingRelative(px22, px16, px22, px16)
+        val px15 = dip2px(15f)
+        val px10 = dip2px(10f)
+        contentTextView!!.setPaddingRelative(px15, px10, px15, px10)
         conRl.addView(contentTextView)
     }
 

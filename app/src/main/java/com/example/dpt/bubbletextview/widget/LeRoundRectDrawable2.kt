@@ -18,14 +18,6 @@ package com.example.dpt.bubbletextview.widget
 import android.graphics.*
 import android.graphics.drawable.Drawable
 
-
-/**
- * Very simple drawable that draws a rounded rectangle background with arbitrary corners and also
- * reports proper outline for L.
- *
- *
- * Simpler and uses less resources compared to GradientDrawable or ShapeDrawable.
- */
 class LeRoundRectDrawable2(backgroundColor: Int, private var mRadius: Float) : Drawable() {
     val paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.DITHER_FLAG)
     private val mBoundsF: RectF

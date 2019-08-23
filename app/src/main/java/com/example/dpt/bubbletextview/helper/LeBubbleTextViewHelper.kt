@@ -12,7 +12,6 @@ import com.example.dpt.bubbletextview.widget.LeBubbleView
 class LeBubbleTextViewHelper {
 
     var bubbleView: LeBubbleView? = null
-
     var bubblePopupWindow: PopupWindow? = null
 
     private var mAnchor: View? = null
@@ -20,7 +19,6 @@ class LeBubbleTextViewHelper {
     private var mBubbleViewHeight: Int = 0
 
     fun init(anchor: View, bubbleViewLayoutRes: Int) {
-
         bubbleView = LayoutInflater.from(anchor.context).inflate(
             bubbleViewLayoutRes, null
         ) as LeBubbleView
@@ -43,8 +41,8 @@ class LeBubbleTextViewHelper {
         val location = IntArray(2)
         mAnchor!!.getLocationInWindow(location)
         val arrowDirection = bubbleView!!.arrowDirection
-        var xOffset = 0
-        var yOffset = 0
+        val xOffset: Int
+        val yOffset: Int
         val anchorWidth = mAnchor!!.width
         val anchorHeight = mAnchor!!.height
         when (arrowDirection) {
