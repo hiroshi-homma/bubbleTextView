@@ -89,12 +89,10 @@ open class LeBubbleView : RelativeLayout, Runnable {
 
         val darkColor = mContext.resources.getColor(R.color.bubbleView_dark_text_color)
         val lightColor = mContext.resources.getColor(R.color.bubbleView_light_text_color)
-        if (textColor == darkColor) {
-            curStyle = STYLE_DARK
-        } else if (textColor == lightColor) {
-            curStyle = STYLE_LIGHT
-        } else {
-            curStyle = STYLE_OTHER
+        curStyle = when (textColor) {
+            darkColor -> STYLE_DARK
+            lightColor -> STYLE_LIGHT
+            else -> STYLE_OTHER
         }
     }
 
