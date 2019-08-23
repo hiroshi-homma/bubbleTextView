@@ -65,7 +65,7 @@ open class LeBubbleView : RelativeLayout, Runnable {
             a.getColor(R.styleable.LeBubbleTextView_bubbleBackgroundPressColor, 0)
         val textColor = a.getColor(R.styleable.LeBubbleTextView_bubbleTextColor, 0)
         val textSize = a.getDimension(R.styleable.LeBubbleTextView_bubbleTextSize, 0f)
-        val contentText = "TestTestTest"
+        val contentText = "TestTestTestTestTestTestTestTest"
 
         val intDirection = a.getInt(R.styleable.LeBubbleTextView_bubbleArrowDirection, 3)
         setCurDirection(intDirection)
